@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            background-color: bisque;
+            position: sticky;
+            top: 0;
+            /* required for sticky */
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        aside {
+            position: sticky;
+            top: 42px;
+            /* add px */
+            left: 0;
+            z-index: 100;
+            width: 250px;
+            background-color: rgb(233, 220, 204);
+            padding: 20px;
+            border-right: 1px solid #ccc;
+            height: 100vh;
+        }
+
+        article {
+            flex: 1;
+            padding: 20px;
+        }
+
+        article h2 {
+            margin-bottom: 10px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+        }
+            /* --- Popup Styling --- */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* dark background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden; /* hidden by default */
+    }
+
+    .popup {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      min-width: 300px;
+    }
+
+     .popup button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    } 
+
+    .popup button:hover {
+      background: #0056b3;
+    } 
+     #search {
+      margin-left: 60%;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .search-btn {
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-left: 5px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    article {
+  scroll-margin-top: 70px; /* same height (or a bit more) as header */
+}
+    </style>
+</head>
+
+<body>
+     <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <h2>Welcome to the page!</h2>
+      <p>We’re glad to see you here 🎉</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <header>MY Website
+  <input type="search" id="search" autocomplete="on">
+  <button class="search-btn" onclick="searchSection()">search</button>
+</header>
+    <div class="container">
+        <aside>
+            Sidebar menu or info goes here...
+            Lorem ipsum dolor sit amet...
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+            doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+
+        </aside>
+
+        <div>
+            <article>
+                <h2>First Section</h2>
+                <p>Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+            <article>
+                <h2>Second Section</h2>
+                <p>Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+            <article>
+                <h2>Third Section</h2>
+                <p>Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+             <article>
+                <h2>forth Section</h2>
+                <p>Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+
+      <article>
+                <h2>fifth Section</h2>
+                <p>Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+             <article>
+                <h2>sixth Section</h2>
+                <p>Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, iure assumenda! Aliquam ducimus ea
+                    doloribus ipsam laborum. Nemo possimus quod, ducimus voluptatum fugiat illum sunt impedit asperiores
+                    quis, officiis quia!</p>
+            </article>
+
+        </div>
+    </div>
+
+    
+
+  <script>
+    window.onload = function () {
+      document.getElementById("popup").style.visibility = "visible";
+    };
+
+    function closePopup() {
+      document.getElementById("popup").style.visibility = "hidden";
+    }
+
+     function searchSection() {
+      let query = document.getElementById("search").value.toLowerCase();
+      let articles = document.querySelectorAll("article");
+
+      for (let article of articles) {
+        let title = article.querySelector("h2").textContent.toLowerCase();
+        if (title.includes(query)) {
+          article.scrollIntoView({ behavior: "smooth" });
+          article.style.background = "lightyellow"; // highlight
+          setTimeout(() => { article.style.background = ""; }, 2000);
+          return;
+        }
+      }}
+  </script>
+</body>
+
+</html>
